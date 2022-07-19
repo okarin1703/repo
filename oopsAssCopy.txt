@@ -1,0 +1,1675 @@
+Assignment 1
+
+WAP in C++ to print the following pattern for n lines, where n is taken as input from the user
+* 1
+* * 2
+* * * 3
+* * * * 4
+
+#include<iostream>
+using namespace std;
+
+int main()
+{
+    int n;
+    cout << "enter the number of lines : ";
+    cin >> n;
+    for(int i = 1; i <= n; i++)
+    {
+        for(int j = 1; j <= i; j++)
+        {
+            cout << "* ";
+        }
+        cout << i << endl;
+    }
+    return 0;
+}
+
+Output:
+enter the number of lines : 4                                                                                           * 1                                                                                                                     * * 2                                                                                                                   * * * 3                                                                                                                 * * * * 4
+
+
+
+
+
+
+
+
+WAP in C++ to find the odd factors of a number
+
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int x;
+    cout << "enter number to find its odd factors ";
+    cin >> x;
+    for(int i = 1; i <= x ; i = i+2)
+    {
+        if(x%i == 0)
+        cout << i << " ";
+    }
+    return 0;
+}
+
+Output:
+enter number to find its odd factors 999
+1 3 9 27 37 111 333 999
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+WAP in C++ using functions to check if
+a) A number is divisible by 5 and 7
+b) The product of digits is equal to the sum of digits of a number
+
+#include <iostream>
+using namespace std;
+
+bool div57(int);
+bool sum_pro(int);
+
+int main()
+{
+    int x;
+    cout << "enter number to find if it's divisible by 5 and 7 : ";
+    cin >> x;
+    if(div57(x))
+        cout << "yes" << endl;
+    else
+        cout << "no" << endl;
+
+    cout << "enter number to find if the sum of its digits is equal to the product of its digits : ";
+    cin >> x;
+    if(sum_pro(x))
+        cout << "yes" << endl;
+    else
+        cout << "no" << endl;
+}
+
+bool div57(int x)
+{
+    if(x%5 == 0 && x%7 == 0)
+        return 1;
+    else 
+        return 0;
+}
+
+bool sum_pro(int x)
+{
+    int s = 0, m = 1, div = x;
+    while(div!=0)
+    {
+        s = s + div % 10;
+        m = m * div % 10;
+        div = div / 10;
+    }
+    if (s == m)
+        return 1;
+    else
+        return 0;
+}
+
+Output:
+enter number to find if it's divisible by 5 and 7 : 35
+yes
+enter number to find if the sum of its digits is equal to the product of its digits : 22
+yes
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Implement a structure for time 
+struct time {
+int hr;
+int min;
+int sec;
+};
+Take input from user. Convert into seconds and print
+
+   
+#include <iostream>
+using namespace std;
+
+struct time {
+    int hr;
+    int min;
+    int sec;
+};
+
+int main()
+{
+    struct time t;
+    cout << "enter hours ";
+    cin >> t.hr;
+    cout << "enter minutes ";
+    cin >> t.min;
+    cout << "enter seconds ";
+    cin >> t.sec;
+    cout << "the time in seconds is : " << t.hr*3600 + t.min*60 + t.sec;
+    
+    return 0;
+}
+
+Output:
+enter hours 2
+enter minutes 30
+enter seconds 13
+the time in seconds is : 9013
+
+
+
+
+
+
+Assignment 2
+
+a) Create a class Student with public data member name and private data members id and marks.
+b) Write public set and get methods for the private data members.
+c) Create an object with your name, id and marks.
+
+#include<iostream>
+#include<string.h>
+#include<stdio.h>
+using namespace std;
+class Student {
+    private:
+        int id;
+        int marks;
+    public:
+        char name[50];
+        void setvalues(int a,int b,char *n);
+        void getvalues();
+};
+void Student::setvalues(int a, int b, char *n) {
+    strcpy(name,n);
+    id=a;
+    marks=b;
+}
+void Student::getvalues()
+{
+    cout<<"Name is: "<<name<<endl;
+    cout<<"ID is: "<<id<<endl;
+    cout<<"MARKS is: "<<marks<<endl;
+}
+
+int main() {
+    Student S;
+    int identity, marks_fetched;
+    char nme[50];
+    cout<<"Enter the name : ";
+    cin.getline(nme,50);
+    cout<<"Enter the id of the student : ";
+    cin>>identity;
+    cout<<"Enter the marks of the student : ";
+    cin>>marks_fetched;
+    S.setvalues(identity,marks_fetched,nme);
+    S.getvalues();
+    return 0;
+}
+
+Output:
+Enter the name : Soumya                                                                                                  Enter the id of the student : 1013                                                                                       Enter the marks of the student : 70                                                                                      Name is: Soumya                                                                                                         ID is: 1013                                                                                                              MARKS is: 70
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+a) In the above program use a constructor to initialize id to 201001001000 and marks to 0.
+b) Take the last 3 digits from user and construct the full id. Take the name and marks as input. Display name, full id and marks of two students.
+
+#include<iostream>
+#include<stdio.h>
+#include<string.h>
+using namespace std;
+class Student {
+    private:
+        long long int id;
+        int marks;
+    public:
+        Student();
+        char name[50];
+        void setid(int num);
+        void setvalues(int b, char *n);
+        void getvalues();
+};
+Student::Student() {
+    id=201001001000;
+    marks=0;
+}
+void Student::setid(int num)
+{
+    id+=num;
+}
+void Student::setvalues(int b,char *n)
+{
+    strcpy(name,n);
+    marks=b;
+}
+void Student::getvalues()
+{
+    cout<<"Name is: "<<name<<endl;
+    cout<<"ID is: "<<id<<endl;
+    cout<<"MARKS is: "<<marks<<endl;
+}
+int main()
+{
+    Student S1,S2;
+    int marks_fetched;
+    long n1;int s;
+    char nme[50];
+    cout<<"Enter the name of student1: ";
+    cin>>nme;
+    cout<<"Enter the marks of student1: ";
+    cin>>marks_fetched;
+    cout<<"Enter the last 3 digits of id of student1: ";
+    cin>>n1;
+    S1.setid(n1);
+    S1.setvalues(marks_fetched,nme);
+    
+    cout<<"Enter the name of student2: ";
+    cin>>nme;
+    cout<<"Enter the marks of student2: ";
+    cin>>marks_fetched;
+    cout<<"Enter the last 3 digits of id of student2: ";
+    cin>>n1;
+    S2.setid(n1);
+    S2.setvalues(marks_fetched,nme);
+    
+    S1.getvalues();
+    S2.getvalues();
+    return 0;
+}
+
+Output:
+Enter the name of student1: soumya
+Enter the marks of student1: 70
+Enter the last 3 digits of id of student1: 013
+Enter the name of student2: soro
+Enter the marks of student2: 70
+Enter the last 3 digits of id of student2: 035
+Name is: soumya
+ID is: 201001001013
+MARKS is: 70
+Name is: soro
+ID is: 201001001035
+MARKS is: 70
+
+
+
+
+Consider the following structure for distance and room.
+Struct Distance {
+int feet;
+int inches;
+};
+Struct Room {
+Distance length;
+Distance width;
+};
+a) Create an object of Struct Room as dining room.
+b) Take the dimensions of the room as input from the user.
+c) Print the area of the room in square feet.
+
+#include<iostream>
+using namespace std;
+struct Distance {
+    int feet;
+    int inches;
+};
+struct Room {
+    struct Distance length;
+    struct Distance breadth;
+};
+
+int main()
+{
+    struct Distance D;
+    struct Room R;
+    cout<<"Length - feet: ";
+    cin>>R.length.feet;
+    cout<<"Length - inches: ";
+    cin>>R.length.inches;
+    cout<<"Breadth - feet: ";
+    cin>>R.breadth.feet;
+    cout<<"Breadth - inches: ";
+    cin>>R.breadth.inches;
+    double l=R.length.feet+R.length.inches/12.0;
+    double b=R.breadth.feet+R.breadth.inches/12.0;
+    double area;
+    area=l*b;
+    cout<<"Area is: "<<area;
+}
+
+Output:
+Length - feet: 8
+Length - inches: 6
+Breadth - feet: 12
+Breadth - inches: 9
+Area is: 108.375
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Assignment 3
+Suppose you are asked to model a toy-train ride at an amusement park.
+Passengers are expected to pay a Rs. 50 fees. Children under 5 years of
+age do not need a ticket. The ticket counter keeps track of the number of
+passengers that have gone by, and of the total amount of money
+collected.
+Model this ticket-counter with a class called ticketCounter. The two data
+items are a type unsigned int to hold the total number of passengers, and
+a type double to hold the total amount of money collected. A constructor
+initializes both of these to 0. A member function called payingPassenger()
+increments the passenger total and adds Rs. 50 the cash total. Another
+function called childPassenger(), increments the passenger total, but does
+nothing to the cash total. Finally, a member function called display()
+displays the two totals.
+Include a program to test this class. The program would allow a ticket
+collector to press one key to count a paying passenger, another key to
+count a child passenger. By the pushing a third key the collector can print
+the total number of passengers, total amount of cash collected and then
+exit.
+
+#include<iostream>
+#include<math.h>
+using namespace std;
+class ticketCounter {
+    private:
+        unsigned int x;
+        double y;
+    public:
+        ticketCounter();
+        void payingPassenger();
+        void childPassenger();
+        void display();
+};
+ticketCounter::ticketCounter() {
+    x=0;
+    y=0;
+}
+void ticketCounter::payingPassenger() {
+    x=x+1;
+    y=y+50;
+}
+void ticketCounter::childPassenger() {
+    x=x+1;
+}
+void ticketCounter::display() {
+    cout<<"TOTAL PASSENGER : \n";
+    cout<<"Paying Passengers: "<<(y/50)<<"\n";
+    cout<<"Total Passengers: "<<x<<"\n";
+    cout<<"Total Money Collected: "<<y<<"\n";
+}
+
+int main()
+{
+    int ch, i=1;
+    ticketCounter obj;
+    cout<<"Press 1 for Adult"<<endl<<"Press 2 for Child"<<endl<<"Press 3 for Count"<<endl;
+    while(i>0) {
+        cin>>ch;
+        switch(ch) {
+            case 1:
+                obj.payingPassenger();
+            break;
+            case 2:
+                obj.childPassenger();
+            break;
+            case 3:
+                obj.display();
+                i=0;
+            break;
+            default:
+                cout<<"Select a Valid Option"<<endl;
+        }
+    }
+return 0;
+}
+
+
+
+
+
+
+
+
+Output:
+Press 1 for Adult                                                                                                       Press 2 for Child                                                                                                       Press 3 for Count                                                                                                       1 2 1 1 2 1 1 2 1 1 1 2                                                                                                 3                                                                                                                       TOTAL PASSENGER :                                                                                                       Paying Passengers: 8                                                                                                    Total Passengers: 12                                                                                                    Total Money Collected: 400
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Create a linked list using class for a node. Use new to create a node object and
+delete to destroy it. Implement the following operations:
+a) Insert at beginning and end.
+b) Delete from any location.
+
+#include<iostream>
+using namespace std;
+
+class node {
+    public:
+        int v;
+        node *next;
+        node(){
+        next = NULL;}
+};
+class LinkedList {
+    node *head;
+    public:
+        LinkedList() {
+            head = NULL;
+        }
+    void insert_at_beginning(int v) {
+        node *temp = new node();
+        temp->v = v;
+        temp->next = head;
+        head = temp;
+    }
+    void insert_at_end(int v) {
+        node *temp = new node();
+        temp->v = v;
+        if (head == NULL)
+            head = temp;
+        else {
+            node *ptr = head;
+            while (ptr->next != NULL) {
+                ptr = ptr->next;
+                ptr->next = temp;
+            }
+        }
+    }
+    void delete_at_given_position(int p) {
+        if (head == NULL) {
+            cout<<"List is Empty"<<endl;
+        }
+        else {
+            node *temp, *ptr;
+            if (p == 0) {
+                cout<<"Element Deleted: "<<head->v<<endl;
+                ptr = head;
+                head = head->next;
+                delete(ptr);
+            }
+            else {
+                temp = ptr = head;
+                while(p>0) {
+                    --p;
+                    temp = ptr;
+                    ptr = ptr->next;
+                }
+                cout<<"Element Deleted: "<<ptr->v<<endl;
+                temp->next = ptr->next;
+                free(ptr);
+            }
+        }
+    }
+    void print() {
+        if (head == NULL) {
+            cout<<"List is empty"<<endl;
+        }
+        else {
+            node *temp = head;
+            cout<<"Linked List: ";
+            while (temp != NULL) {
+                cout<<temp->v<<"->";
+                temp = temp->next;
+            }
+            cout<<"NULL"<<endl;
+        }
+    }
+};
+int main() {
+    cout<<"1 to Insert at the beginning"<<endl<<"2 to Insert at the end"<<endl<<"3 to Delete from any location"<<endl<<"4 to Display"<<endl<<"0 to Exit"<<endl;
+    int choice,v,p;
+    LinkedList ll;
+    do {
+        cout<<"\nEnter Your Choice: ";
+        cin>>choice;
+        switch (choice)
+        {
+            case 1:
+                cout<<"Enter Element: ";
+                cin>>v;
+                ll.insert_at_beginning(v);
+                break;
+            case 2:
+                cout<<"Enter Element: ";
+                cin>>v;
+                ll.insert_at_end(v);
+                break;
+            case 3:
+                cout<<"Enter Position ( zero-indexed ): ";
+                cin>>p;
+                ll.delete_at_given_position(p);
+                break;
+            case 4:
+                ll.print();
+                break;
+        }
+    } while (choice != 0);
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Output:
+1 to Insert at the beginning
+2 to Insert at the end
+3 to Delete from any location
+4 to Display
+0 to Exit
+
+Enter Your Choice: 1
+Enter Element: 14
+
+Enter Your Choice: 1
+Enter Element: 13
+
+Enter Your Choice: 1
+Enter Element: 51
+
+Enter Your Choice: 4
+Linked List: 51->13->14->NULL
+
+Enter Your Choice: 3
+Enter Position (zero-indexed): 1
+Element Deleted: 13
+
+Enter Your Choice: 4
+Linked List: 51->14->NULL
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Update the linked list implementation to work as a stack and implement push and pop operations.
+
+#include <iostream>
+using namespace std;
+class Node {
+    public:
+        int data;
+        Node* next;
+        Node() {
+            data = 0;
+            next = NULL;
+        }
+};
+class llist {
+    Node* head;
+    public:
+    llist();
+    void push(int);
+    void printList();
+    void pop();
+};
+llist::llist() {
+    head = NULL;
+}
+void llist::push(int data) {
+    Node* newNode = new Node();
+    newNode->data=data;
+    if (head == NULL) {
+        head = newNode;
+        return;
+    }
+    Node* temp = head;
+    while (temp->next != NULL) {
+        temp = temp->next;
+    }
+    temp->next = newNode;
+}
+void llist::pop() {
+    Node *temp1 = head, *temp2 = NULL;
+    if (head == NULL) {
+        cout << "Underflow" << endl;
+        return;
+    }
+    if(head->next==NULL) {
+        head=NULL;
+        return;
+    }
+    temp1 = head;
+    while (temp1->next!=NULL) {
+        temp2 = temp1;
+        temp1 = temp1->next;
+    }
+    temp2->next = NULL;
+    delete temp1;
+}
+void llist::printList() {
+    Node* temp = head;
+    if (head == NULL) {
+    cout << "List is Empty" << endl;
+    return;
+    }
+    while (temp != NULL) {
+        cout << temp->data << " ";
+        temp = temp->next;
+    }
+    cout<<endl;
+}
+
+int main()
+{
+    llist list;
+    int ch,n,size=0;
+    cout<<"Enter your choice"<<endl<<"1 Stack Push"<<endl<<"2 Stack Pop"<<endl<<"3 Stack Display"<<endl<<"0 To Exit"<<endl;
+    while(1) {
+        cin>>ch;
+        switch(ch)
+        {
+            case 1 :
+                cout<<"Enter a Number: ";
+                cin>>n;
+                list.push(n);
+                size++;
+                break;
+            case 2 :
+                list.pop();
+                break;
+            case 3:
+                list.printList();
+                break;
+            case 0:
+                return 1;
+                break;
+        }
+    }
+    return 1;
+}
+
+Output:
+Enter your choice
+1 Stack Push
+2 Stack Pop
+3 Stack Display
+0 To Exit
+1
+Enter a Number: 15
+1
+Enter a Number: 31
+1
+Enter a Number: 16
+1
+Enter a Number: 31
+1
+Enter a Number: 36
+3
+15 31 16 31 36
+2
+2
+2
+3
+15 31
+0
+
+
+
+
+Assignment 4
+An election is contested by 5 candidates. The candidates are numbered 1
+to 5 and the voting is done by marking the candidate number in the ballot
+paper. Create a class BallotBox to read the ballots and count the votes cast for each candidate using an array variable count. In case a number read is outside the range 1 to 5 the ballot should be considered as spoilt ballot and the program should also count the number of spoilt ballots.
+
+#include<iostream>
+using namespace std;
+class BallotBox
+{
+    int votes;
+    public:
+        void read(int v) {
+            votes = v;
+        }
+        int count[6]={0,0,0,0,0,0};
+        void counter() {
+            if(votes==1) {
+                count[0]++;
+            }
+            else if(votes==2) {
+                count[1]++;
+            }
+            else if(votes==3) {
+                count[2]++;
+            }
+            else if(votes==4) {
+                count[3]++;
+            }
+            else if(votes==5) {
+                count[4]++;
+            }
+            else {
+                count[5]++;
+            }
+        }
+};
+
+int main()
+{
+    BallotBox Box;
+    int v,n;
+    cout<<"enter number of voters ";
+    cin>>n;
+    cout<<"CANDIDATES ARE NUMBERED FROM 1 TO 5"<<endl;
+    cout<<"CAST YOUR VOTES :-"<<endl;
+    for(int i=1;i<=n;i++)
+    {
+        cin>>v;
+        Box.read(v);
+        Box.counter();
+    }
+    cout<<"\n\tRESULTS :-"<<endl;
+    cout<<"Candidate 1 : "<<Box.count[0]<<endl;
+    cout<<"Candidate 2 : "<<Box.count[1]<<endl;
+    cout<<"Candidate 3 : "<<Box.count[2]<<endl;
+    cout<<"Candidate 4 : "<<Box.count[3]<<endl;
+    cout<<"Candidate 5 : "<<Box.count[4]<<endl;
+    cout<<"Spoilt Ballots : "<<Box.count[5]<<endl;
+    return 0;
+}
+
+Output:
+enter number of voters 15
+CANDIDATES ARE NUMBERED FROM 1 TO 5
+CAST YOUR VOTES :-
+2 1 3 2 4 2 5 2 6 2 1 3 2 5 2
+
+        RESULTS :-
+Candidate 1 : 2
+Candidate 2 : 7
+Candidate 3 : 2
+Candidate 4 : 1
+Candidate 5 : 2
+Spoilt Ballots : 1
+
+
+
+
+
+Write a C++ program using array of objects that store player name, matches played and runs scored for given number of players. Involve member functions to obtain player with maximum matches played, maximum runs scored and maximum average.
+
+#include<bits/stdc++.h>
+using namespace std;
+class Player
+{
+    string name;int match_played;int runs_scored;
+    public :
+        void set_credendtials(string s,int mp,int rs) {
+            name=s;match_played=mp;runs_scored=rs;
+        }
+    Player maximum_matches_played(Player player[],int n) {
+    int max_player,max_match=INT_MIN;
+    for(int i=0;i<n;i++) 
+        if(max_match<player[i].match_played) {
+            max_player=i;
+            max_match=player[i].match_played;
+        }
+    return player[max_player];
+    }
+    Player maximum_run_scored(Player player[],int n) {
+    int max_player,max_run=INT_MIN;
+    for(int i=0;i<n;i++)
+        if(max_run<player[i].runs_scored) {
+            max_player=i;
+            max_run=player[i].runs_scored;
+        }
+    return player[max_player];
+    }
+    Player maximum_average(Player player[],int n) {
+        double max_average=0.0;int max_player;
+        for(int i=0;i<n;i++)
+            if(max_average<player[i].runs_scored/(player[i].match_played*1.00)) {
+                max_player=i;
+                max_average=player[i].runs_scored/(player[i].match_played*1.00);
+            }
+        return player[max_player];
+    }
+    void display() {
+        cout<<name<<endl;
+    }
+};
+
+int main() {
+    int number_of_players;string name;int mp,rs;
+    cout<<"Input the number of players : ";cin>>number_of_players;
+    Player player_list[number_of_players], player_with_maximum_matches_played, player_with_maximum_runs_scored, player_with_maximum_average;
+    for(int i=0;i<number_of_players;i++) {
+        cout<<"Input the details for player "<<i+1<<" : "<<endl;
+        cout<<"Name : ";cin>>name;
+        cout<<"Number of matches played : ";cin>>mp;
+        cout<<"Total runs scored : ";cin>>rs;
+        player_list[i].set_credendtials(name,mp,rs);
+    }
+    player_with_maximum_matches_played=player_with_maximum_matches_played.maximum_matches_played(player_list,number_of_players);
+    player_with_maximum_runs_scored=player_with_maximum_runs_scored.maximum_run_scored(player_list,number_of_players);
+    player_with_maximum_average=player_with_maximum_average.maximum_average(player_list,number_of_players);
+    cout<<"Player who has played the maximum number of matches is :";player_with_maximum_matches_played.display();
+    cout<<"Player who has scored the maximum runs is : ";player_with_maximum_runs_scored.display();
+    cout<<"Player with the maximum average is : ";player_with_maximum_average.display();
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+Output:
+Input the number of players : 3
+Input the details for player 1 :
+Name : Ackerman
+Number of matches played : 54
+Total runs scored : 300
+Input the details for player 2 :
+Name : Yeager
+Number of matches played : 20
+Total runs scored : 500
+Input the details for player 3 :
+Name : Armin
+Number of matches played : 41
+Total runs scored : 400
+Player who has played the maximum number of matches is :Ackerman
+Player who has scored the maximum runs is : Yeager
+Player with the maximum average is : Yeager
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Write a function called reversit() that reverses a C-string (an array of char). Use a for loop that swaps the first and last characters, then the second and next-to-last characters, and so on. The string should be passed to reversit() as an argument. Write a program to exercise reversit().
+The program should get a string from the user, call reversit(), and print out the result. Use an input method that allows embedded blanks.
+
+#include <iostream>
+#include<string>
+using namespace std;
+string reversitt(string s) {
+    char c;
+    int len = s.length();
+    int n=len-1;
+    for(int i=0;i<(len/2);i++) {
+        c=s[i];
+        s[i]=s[n];
+        s[n]=c;
+        n = n-1;
+    }
+    return s;
+}
+
+int main() {
+    string s,s1;
+    cout<<"enter a string"<<endl;
+    std::getline(std::cin, s);
+    s1=reversitt(s);
+    cout<<s1<<endl;
+    return 0;
+}
+
+Output:
+enter a string
+edamura is a scientist
+tsitneics a si arumade
+
+
+
+
+
+
+Assignment 5
+Write overloaded functions to add two numbers depending on the types for each of the following cases:
+a) Add two int and return int
+b) Add three int and return int
+c) Add two float and return float
+d) Add one int to double and return double
+e) Add one double to int and return double
+Write the main function to execute these functions.
+#include <bits/stdc++.h>
+using namespace std;
+int add(int a, int b) {
+	cout << "calling add(int,int)" << endl;
+	cout << "Answer : ";
+	return a + b;
+}
+int add(int a, int b, int c) {
+	cout << "calling add(int,int,int)" << endl;
+	cout << "Answer : ";
+	return a + b + c;
+}
+float add(float a, float b) {
+	cout << "calling add(float,float)" << endl;
+	cout << "Answer : ";
+	return a + b;
+}
+double add(int a, double b) {
+	cout << "calling add(int,double)" << endl;
+	cout << "Answer : ";
+	return a + b;
+}
+double add(double a, int b) {
+	cout << "calling add(double,int)" << endl;
+	cout << "Answer : ";
+	return a + b;
+}
+
+int main()
+{
+	int a, b, e;
+	float c, f;
+	double d;
+	cout << "Enter number for addition of 2 integers : ";
+	cin >> a >> b;
+	cout << add(a, b) << endl;
+	cout << "Enter number for addition of 3 integers : ";
+	cin >> a >> b >> e;
+	cout << add(a, b, e) << endl;
+	cout << "Enter number for addition of 2 floating point numbers : ";
+	cin >> c >> f;
+	cout << add(c, f) << endl;
+	cout << "Enter number for addition of integer to double number : ";
+	cin >> a >> d;
+	cout << add(a, d) << endl;
+	cout << "Enter number for addition of double number to integer : ";
+	cin >> d >> a;
+	cout << add(d, a) << endl;
+	return 0;
+}
+
+Output:
+Enter number for addition of 2 integers : 1 2
+calling add(int,int)
+Answer : 3
+Enter number for addition of 3 integers : 4 5 2
+calling add(int,int,int)
+Answer : 11
+Enter number for addition of 2 floating point numbers : 1.2 5.2
+calling add(float,float)
+Answer : 6.4
+Enter number for addition of integer to double number : 2 5.3
+calling add(int,double)
+Answer : 7.3
+Enter number for addition of double number to integer : 7.4 52
+calling add(double,int)
+Answer : 59.4
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+In the above program (Program 1) use default parameters to write one function for a) and b)
+#include <bits/stdc++.h>
+using namespace std;
+
+int add(int a, int b, int c = 0) {
+	cout << "calling add(int,int,int)" << endl;
+	cout << "Answer : ";
+	return a + b + c;
+}
+float add(float a, float b) {
+	cout << "calling add(float,float)" << endl;
+	cout << "Answer : ";
+	return a + b;
+}
+double add(int a, double b) {
+	cout << "calling add(int,double)" << endl;
+	cout << "Answer : ";
+	return a + b;
+}
+double add(double a, int b) {
+	cout << "calling add(double,int)" << endl;
+	cout << "Answer : ";
+	return a + b;
+}
+int main() {
+	int a, b, e;
+	float c, f;
+	double d;
+	cout << "Enter number for addition of 2 integers : ";
+	cin >> a >> b;
+	cout << add(a, b) << endl;
+	cout << "Enter number for addition of 3 integers : ";
+	cin >> a >> b >> e;
+	cout << add(a, b, e) << endl;
+	cout << "Enter number for addition of 2 floating point numbers : ";
+	cin >> c >> f;
+	cout << add(c, f) << endl;
+	cout << "Enter number for addition of integer to double number : ";
+	cin >> a >> d;
+	cout << add(a, d) << endl;
+	cout << "Enter number for addition of double number to integer : ";
+	cin >> d >> a;
+	cout << add(d, a) << endl;
+	return 0;
+}
+
+Output:
+Enter number for addition of 2 integers : 2 5
+calling add(int,int,int)
+Answer : 7
+Enter number for addition of 3 integers : 2 6 3
+calling add(int,int,int)
+Answer : 11
+Enter number for addition of 2 floating point numbers : 3.2 5.6
+calling add(float,float)
+Answer : 8.8
+Enter number for addition of integer to double number : 2 6.7
+calling add(int,double)
+Answer : 8.7
+Enter number for addition of double number to integer : 4.5 6
+calling add(double,int)
+Answer : 10.5
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Write overloaded functions to calculate area according to the declaration given below:
+a)int area(int side) 	//calculate the area of a square
+b)int area(int length , int breadth) 	//calculate the area of a rectangle
+c)float area(float radius) 	//calculate the area of a circle
+Write a main function to test these functions.
+
+#include <bits/stdc++.h>
+using namespace std;
+int area(int side) {
+	return side * side;
+}
+int area(int length, int breadth) {
+	return length * breadth;
+}
+float area(float radius) {
+	return 3.14579 * radius * radius;
+}
+int main()
+{
+	int side, length, breadth;
+	float radius;
+	cout << "Enter the side length of a square : ";
+	cin >> side;
+	cout << "The area of the square is : " << area(side) << endl;
+	cout << "Enter the length and bredth of the rectangle : ";
+	cin >> length >> breadth;
+	cout << "The area of the rectangle is : " << area(length, breadth) << endl;
+	cout << "Enter the radius of the circle : ";
+	cin >> radius;
+	cout << "The area of the circle is : " << area(radius) << endl;
+	return 0;
+}
+
+Output:
+Enter the side length of a square : 5
+The area of the square is : 25
+Enter the length and bredth of the rectangle : 5 13
+The area of the rectangle is : 65
+Enter the radius of the circle : 4.5
+The area of the circle is : 63.7022
+
+
+
+
+Assignment – 6
+
+Create a base class employee with:
+1. Public data members name and id
+From this class derive the other classes using public Derivation:
+a. Manager class with
+      i. Private data member salary.
+ii. Public data member designation (e.g., president, vice-president etc.).
+b. Scientist class with
+      i. Private data member salary.
+      ii. Public data member num_of_publications.
+Create one object of manager and one of object for scientist. Take Input from user for all four data fields for each object and display.
+
+#include <iostream>
+using namespace std;
+
+class employee
+{
+public:
+	string name;
+	int id;
+};
+
+class manager : public employee
+{
+private:
+	int salary;
+
+public:
+	char designation[30];
+	void getdata()
+	{
+    	cout << "\n\nEnter the name: \n";
+    	cin >> name;
+    	cout << "Enter the id: \n";
+    	cin >> id;
+    	cout << "Enter the designation: \n";
+    	cin >> designation;
+    	cout << "Enter the salary: \n";
+    	cin >> salary;
+	}
+	void show()
+	{
+    	cout << "\nManager Name:"<<name<<"\nId : "<<id<<"\nDesignation : "<<designation<<"\nSalary : "<<salary;
+	}
+};
+class scientist : public employee
+{
+	private : int salary;
+
+public:
+	int num_of_publication;
+	void getdata()
+	{
+    	cout << "\n\nEnter the name of scientist: \n";
+    	cin >> name;
+    	cout << "Enter the id: \n";
+    	cin >> id;
+    	cout << "Enter the number of publication: \n";
+    	cin >> num_of_publication;
+    	cout << "Enter the salary: \n";
+    	cin >> salary;
+	}
+ 	void show()
+	{
+    	cout << "\nScientist Name: " << name << "\nId:" << id << "\nNumber of publication : "<<num_of_publication<<"\nSalary : "<<salary;
+	}
+};
+int main()
+{
+	manager m;
+	m.getdata();
+	m.show();
+	scientist s;
+	s.getdata();
+	s.show();
+	return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+Output:
+Enter the name:
+Luffy
+Enter the id:
+9134
+Enter the designation:
+HOD
+Enter the salary:
+2000000
+
+Manager Name:Luffy
+Id : 9134
+Designation : HOD
+Salary : 2000000
+
+Enter the name of scientist:
+D.Law
+Enter the id:
+9182
+Enter the number of publication:
+429
+Enter the salary:
+10000000
+
+Scientist Name: D.Law
+Id:9182
+Number of publication : 429
+Salary : 10000000
+
+
+In the above program, use private derivation. What are the public methods that you need to add?
+
+#include <iostream>
+using namespace std;
+class employee
+{
+public:
+	int id;
+	char name[50];
+};
+class Manager : private employee
+{
+	int salary;
+
+public:
+	char de[50];
+	void getData()
+	{
+    	cout << "Enter manager details:\nName :";
+    	cin >> name;
+    	cout << "ID :";
+    	cin >> id;
+    	cout << "Designation :";
+    	cin >> de;
+    	cout << "Salary :";
+    	cin >> salary;
+	}
+	void show(int i)
+	{
+      cout << "NAME-" << name;
+    	cout << "ID :" << id;
+    	cout << "Designation :" << de;
+    	cout << "Salary :" << salary;
+	}
+};
+class Scientist : private employee
+{
+	int sal;
+
+public:
+	int nop;
+	void getData()
+	{
+    	cout << "Enter Scientist details:\nName :";
+    	cin >> name;
+    	cout << "Salary :";
+    	cin >> sal;
+    	cout << "number of publication :";
+    	cin >> nop;
+	}
+	void show(int i)
+	{
+    	cout << "NAME-" << name;
+    	cout << "ID :" << id;
+    	cout << "Salary :" << sal;
+    	cout << "Number of publication :" << nop;
+	}
+};
+int main()
+{
+	Manager m1, m2;
+	Scientist s1, s2;
+	m1.getData();
+	s2.getData();
+	m1.show(1);
+	s2.show(2);
+	return 0;
+}
+
+Output:
+Enter manager details:
+Name :Loid
+ID :9012
+Designation :Spy
+Salary :8000000
+
+Enter Scientist details:
+Name :Anya
+Salary :10000000
+number of publication :102
+Enter manager details:
+
+NAME-Loid
+ID :9012
+Designation :Spy
+Salary :8000000
+Enter Scientist details:
+
+NAME-Anya
+ID :1972444896
+Salary :10000000
+Number of publication :102
+ 
+In the same program, now make the id protected. Add necessary methods to access id in private derivation of the manager and scientist classes.
+
+#include <iostream>
+using namespace std;
+class employee
+{
+protected:
+	string name;
+	int id;
+};
+class manager : public employee
+{
+private:
+	int salary;
+
+public:
+	char designation[30];
+	void getdata()
+	{
+    	cout << "\n\nEnter the name: \n";
+    	cin >> name;
+    	cout << "Enter the id: \n";
+    	cin >> id;
+    	cout << "Enter the designation: \n";
+    	cin >> designation;
+    	cout << "Enter the salary: \n";
+    	cin >> salary;
+	}
+	void show()
+	{
+    	cout << "\nManager Name:"<<name<<"\nId : "<<id<<"\nDesignation : "<<designation<<"\nSalary : "<<salary;
+	}
+};
+class scientist : public employee
+{
+private:
+	int salary;
+
+public:
+	int num_of_publication;
+	void getdata()
+	{
+    	cout << "\n\nEnter the name of scientist: \n";
+    	cin >> name;
+    	cout << "Enter the id: \n";
+    	cin >> id;
+    	cout << "Enter the number of publication: \n";
+    	cin >> num_of_publication;
+    	cout << "Enter the salary: \n";
+    	cin >> salary;
+	}
+	void show()
+	{
+    	cout << "\nScientist Name: " << name << "\nId:" << id << "\nNumber of publication : "<<num_of_publication<<"\nSalary : "<<salary;
+	}
+};
+int main()
+{
+	manager m;
+	m.getdata();
+	m.show();
+	scientist s;
+	s.getdata();
+	s.show();
+	return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Output:
+Enter the name:
+asta
+Enter the id:
+1933
+Enter the designation:
+banker
+Enter the salary:
+2000000
+
+Manager Name:asta
+Id : 1933
+Designation : banker
+Salary : 2000000
+
+Enter the name of scientist:
+yuno
+Enter the id:
+3272
+Enter the number of publication:
+917
+Enter the salary:
+90000000
+
+Scientist Name: yuno
+Id:3272
+Number of publication : 917
+Salary : 90000000
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Object Oriented Programming Lab Copy 
+Name: Soumya Snigdha Das
+ID: 201001001013
+Batch: BCS2A
+
+Index:
+
+
